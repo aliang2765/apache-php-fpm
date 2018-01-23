@@ -15,11 +15,18 @@ RUN apt-get update; \
     php-mongodb \
     libapache2-mod-fastcgi \
     unzip \
-    vim; \
-    php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/ --filename=composer
+    vim \
+    wget
 
 COPY conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# install adminer.php
+RUN mkdir /usr/share/adminer; \
+    wget "http://www.adminer.org/latest.php" -O /usr/share/adminer/latest.php; \
+    ln -s /usr/share/adminer/latest.php /usr/share/adminer/adminer.php; \
+    echo "Alias /adminer.php /usr/share/adminer/adminer.php" | tee /etc/apache2/conf-available/adminer.conf; \
+    a2enconf adminer.conf
 
 RUN a2enconf php7.0-fpm; \
     a2enmod actions fastcgi alias proxy proxy_fcgi rewrite; \
