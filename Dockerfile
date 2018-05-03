@@ -12,6 +12,7 @@ RUN apt-get update && \
     php7.2-xml \
     php7.2-mysql \
     php7.2-gd \
+    php7.2-curl \
     php-redis \
     php-mongodb \
     libapache2-mod-fastcgi \
