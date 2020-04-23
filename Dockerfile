@@ -18,7 +18,8 @@ RUN apt-get update && \
     libapache2-mod-fastcgi \
     unzip \
     vim \
-    wget
+    wget \
+    git
 
 COPY conf/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
