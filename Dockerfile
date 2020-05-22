@@ -13,6 +13,7 @@ RUN apt-get update && \
     php7.2-mysql \
     php7.2-gd \
     php7.2-curl \
+    php7.2-sqlite3 \
     php-redis \
     php-mongodb \
     libapache2-mod-fastcgi \
